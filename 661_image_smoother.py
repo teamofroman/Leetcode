@@ -10,12 +10,8 @@ class Solution:
         cells_count = 0
         cells_sum = 0
 
-        for i in range(cell_row - 1, cell_row + 2):
-            if i < 0 or i >= rows:
-                continue
-            for j in range(cell_col - 1, cell_col + 2):
-                if j < 0 or j >= cols:
-                    continue
+        for i in range(max(0, cell_row - 1), min(rows, cell_row + 2)):
+            for j in range(max(0, cell_col - 1), min(cols, cell_col + 2)):
                 cells_sum += img[i][j]
                 cells_count += 1
 
