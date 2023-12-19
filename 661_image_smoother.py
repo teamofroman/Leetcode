@@ -11,7 +11,11 @@ class Solution:
         cells_sum = 0
 
         for i in range(max(0, cell_row - 1), min(rows, cell_row + 2)):
-            for j in range(max(0, cell_col - 1), min(cols, cell_col + 2)):
+            if i < 0 or i >= rows:
+                continue
+            for j in range(cell_col - 1, cell_col + 2):
+                if j < 0 or j >= cols:
+                    continue
                 cells_sum += img[i][j]
                 cells_count += 1
 
@@ -24,13 +28,10 @@ class Solution:
         rows = len(img)
         cols = len(img[0])
 
-        new_img = []
+        new_img = [[0 for j in range(cols)] for i in range(rows)]
         for row in range(rows):
-            new_row = []
             for col in range(cols):
-                ave = self.get_average(row, col, img, rows, cols)
-                new_row.append(ave)
-            new_img.append(new_row)
+                new_img[row][col] = self.get_average(row, col, img, rows, cols)
 
         return new_img
 
